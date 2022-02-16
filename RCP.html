@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title> Rock, Paper and Scissors</title>
+    </head>
+    <body>
+        <script>
+            const moves = ['Rock', 'Paper', 'Scissors'];
+            let result = null;
+            let playerScore = 0;
+            let computerScore = 0;
+
+            function computerPlays(){
+                seed = Math.floor(Math.random()* moves.length);
+                return moves[seed];
+            }
+            
+            function playRound(playerSelection, computerSelection){
+                if(playerSelection === computerSelection){
+                    result = 'Draw!';
+                    return result;
+                }
+                else{
+                    switch(playerSelection){
+                        case 'Rock':
+                            if(computerSelection === 'Paper'){
+                                result =  'You Lost! Paper beats Rock!'
+                                computerScore++;
+                            }
+                            else{
+                                result = 'You Win! Rock beats Scissors!'
+                                playerScore++;
+                            }
+                            break;
+                        case 'Paper':
+                            if(computerSelection === 'Scissors'){
+                                result =  'You Lost! Scissors beat Paper!'
+                                computerScore++;
+                            }
+                            else{
+                                result = 'You Win! Paper beats Rock!'
+                                playerScore++;
+                            }
+                            break;
+                        case 'Scissors':
+                            if(computerSelection === 'Rock'){
+                                result =  'You Lost! Rock beats Scissors!'
+                                computerScore++;
+                            }
+                            else{
+                                result = 'You Win! Scissors beat Paper!'
+                                playerScore++;
+                            }
+                            break;
+                    }
+                return result;
+                }
+            }
+
+            function game(){
+                for (let i=0; i<5; i++){
+                    playerSelection = prompt('What is your move? You may only choose between these options: Rock, Paper and Scissors');
+                    while (!moves.includes(playerSelection)){
+                        playerSelection = prompt('Invalid Move! Please only choose between these options: Rock, Paper and Scissors');
+                    }
+                    alert(playRound(playerSelection, computerPlays()));
+                }
+                if(playerScore > computerScore){
+                    alert('Congratulations! You won.');
+                }
+                else if (playerScore < computerScore){
+                    alert('You Lost!');
+                }
+                else{
+                    alert("It's a draw!");
+                }
+            }
+
+            game();
+        </script>
+    </body>
+</html>
